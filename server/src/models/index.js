@@ -1,0 +1,17 @@
+module.exports = {
+  Profile: require('./Profile'),
+  About: require('./About'),
+  Education: require('./Education'),
+  Skill: require('./Skill'),
+  Project: require('./Project'),
+  Experience: require('./Experience'),
+  Publication: require('./Publication'),
+  Certification: require('./Certification'),
+  Achievement: require('./Achievement'),
+  FAQ: require('./FAQ'),
+  TeamMember: require('./TeamMember'),
+  SocialLink: require('./SocialLink'),
+  SiteSettings: require('./SiteSettings'),
+  NavigationItem: require('./NavigationItem'),
+  ContactMessage: require('./ContactMessage'),
+};

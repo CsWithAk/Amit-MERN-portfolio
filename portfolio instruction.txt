@@ -1,0 +1,1155 @@
+# MASTER PROJECT PROMPT — AMIT KUMAR MERN PORTFOLIO + COMPLETE ADMIN CMS
+
+## ROLE
+
+Act as a senior MERN Stack architect, full-stack developer, UI/UX designer, motion designer, database architect and application security engineer.
+
+You are working inside Qoder IDE using the Qwen3.8-flash agent model.
+
+Your task is to completely rebuild my existing personal portfolio into a premium, modern, animated, production-ready MERN Stack application with a complete private admin content management system.
+
+This is a real implementation task, not a tutorial or prototype.
+
+Do not just provide code snippets or explanations. Inspect the repository, implement the application, create all necessary files, configure the project and test the functionality.
+
+---
+
+# PHASE 0 — INSPECT THE EXISTING PROJECT FIRST
+
+The current project contains:
+
+- index.html
+- thankyou.html
+- README.md
+
+Read and understand the complete existing source code before making changes.
+
+Extract and preserve all existing genuine portfolio information, including:
+
+- Personal profile and introduction.
+- About section.
+- Education and academic journey.
+- Courses and certifications.
+- Internship and experience records.
+- Technical skills.
+- Projects and their descriptions.
+- Research publications.
+- Team information.
+- Contact details.
+- Social media links.
+- Resume information.
+- Footer content.
+- Existing useful links and images.
+
+The existing portfolio contains multiple sections and JavaScript data arrays. Do not lose this information during migration.
+
+Create a content migration checklist before implementation.
+
+Do not invent achievements, project statistics, publication details, certificates, links or experience.
+
+If information is missing or incomplete, preserve the available information and make it editable through the admin panel.
+
+Do not delete the original files until their content has been successfully migrated and verified.
+
+---
+
+# PHASE 1 — TECHNOLOGY STACK
+
+Use the following architecture.
+
+FRONTEND:
+- React
+- Vite
+- JavaScript
+- Tailwind CSS
+- Framer Motion
+- React Router DOM
+- Axios
+- Lucide React
+- React Hook Form
+- React Helmet Async
+
+BACKEND:
+- Node.js
+- Express.js
+- MongoDB Atlas
+- Mongoose
+- JWT
+- bcrypt
+- Cookie Parser
+- Helmet
+- CORS
+- Express Rate Limit
+- Nodemailer
+- Multer
+
+IMAGE STORAGE:
+- Cloudinary for profile images, project images, certificates and other uploaded assets.
+
+Use a clean, modular architecture.
+
+Do not build the entire application inside a single component.
+
+---
+
+# PHASE 2 — VISUAL DESIGN SYSTEM
+
+Create a premium, futuristic, professional developer portfolio.
+
+DESIGN DIRECTION:
+
+- Premium dark interface.
+- Deep navy and near-black backgrounds.
+- Electric violet and blue accents.
+- Subtle cyan highlights.
+- Soft gradients.
+- Carefully controlled glow effects.
+- Glassmorphism only where appropriate.
+- Modern bento-grid layouts.
+- Professional typography.
+- Generous whitespace.
+- Rounded cards with consistent radii.
+- Subtle borders and shadows.
+- Smooth page transitions.
+- Beautiful responsive layouts.
+
+Suggested starting palette:
+
+Background: #080B14
+Secondary Background: #101626
+Card Background: #141D30
+Primary Accent: #8B5CF6
+Secondary Accent: #38BDF8
+Highlight: #A78BFA
+Primary Text: #F8FAFC
+Secondary Text: #94A3B8
+Border: rgba(148,163,184,0.15)
+
+Use these as initial design tokens, not rigid limitations.
+
+The final design should look like a high-quality software engineer portfolio, not a generic template.
+
+Avoid:
+- Excessive neon.
+- Excessive gradients.
+- Unnecessary 3D objects.
+- Too many floating elements.
+- Unreadable typography.
+- Excessive animations.
+- Overloaded cards.
+- Artificial or fake-looking statistics.
+
+Create reusable design tokens and components.
+
+---
+
+# PHASE 3 — UNIQUE MULTI-CURSOR ANIMATION SYSTEM
+
+This is one of the most important requirements.
+
+I want an interactive animation in which multiple animated cursors appear to construct the portfolio while visitors scroll through the website.
+
+Create a reusable component:
+
+AnimatedCursorOrchestrator.jsx
+
+Create a cursor animation system containing a pool of 7–8 visually distinct cursor actors.
+
+Each cursor should have:
+- Unique colour.
+- Small cursor pointer icon.
+- Optional developer-style name label.
+- Smooth movement.
+- Typing animation.
+- Drawing or highlighting animation.
+- Controlled opacity.
+- Independent animation timing.
+
+EXPECTED VISITOR EXPERIENCE:
+
+1. When the visitor opens the website, cursor actors enter the hero section.
+2. They move towards the name and introduction.
+3. A typing animation reveals the introduction text.
+4. Other cursors draw decorative borders around hero cards.
+5. As the visitor scrolls, the cursor actors move towards the currently visible section.
+6. About cards are visually assembled.
+7. Skill tags appear sequentially.
+8. Project cards are drawn and revealed.
+9. Timeline items appear with animated connectors.
+10. Publication and experience cards are revealed.
+11. Contact elements are animated at the end.
+
+IMPLEMENTATION REQUIREMENTS:
+
+- Use Framer Motion and IntersectionObserver.
+- Use CSS transforms and opacity wherever possible.
+- Use requestAnimationFrame only when necessary.
+- Use a reusable cursor animation configuration.
+- Synchronize cursor movements with section visibility.
+- Use staggered typing and reveal animations.
+- Use SVG or CSS border-drawing animations for card outlines.
+- Keep the animation layer pointer-events: none.
+- Never block clicking, selecting text, links or buttons.
+- Never modify actual portfolio data during animation.
+- Never make animations depend on actual mouse coordinates unless explicitly needed.
+
+IMPORTANT PERFORMANCE RULES:
+
+- Do not show all eight cursors moving at the same time.
+- Use approximately 2–4 active cursor actors at once.
+- Rotate cursor actors as the user scrolls.
+- Do not run heavy animation loops continuously.
+- Pause or simplify animation when the browser tab is hidden.
+- Respect prefers-reduced-motion.
+- Use a lightweight version on mobile.
+- Ensure the website works perfectly if animation is disabled.
+- Do not allow animation to cause layout shifts or horizontal scrolling.
+
+The effect must look like a premium interactive website being constructed by a coordinated design/development team.
+
+Do not make it look like a children's game or a hacking simulation.
+
+---
+
+# PHASE 4 — PUBLIC PORTFOLIO PAGES
+
+Create these public routes:
+
+/
+ /thank-you
+ /login
+
+The main portfolio should include the following sections.
+
+1. NAVIGATION
+
+- Personal logo or AK monogram.
+- Home.
+- About.
+- Journey.
+- Skills.
+- Projects.
+- Experience.
+- Publications.
+- Team, if content exists.
+- Contact.
+- Resume download.
+- Mobile navigation.
+- Smooth scrolling.
+
+Navigation items must be editable through the admin panel.
+
+2. HERO SECTION
+
+- Professional introduction.
+- Name: Amit Kumar.
+- Animated role text.
+- Short professional tagline.
+- Profile image.
+- Resume download button.
+- Contact button.
+- Social media links.
+- Premium background animation.
+- Multi-cursor typing animation.
+
+3. ABOUT SECTION
+
+- Professional biography.
+- Academic background.
+- Interests.
+- Personal statistics.
+- Profile photograph.
+- Animated bento layout.
+
+4. EDUCATION AND JOURNEY
+
+Include:
+- Education.
+- Courses.
+- Internships.
+- Work experience.
+
+Provide filtering by category and attractive timeline or card layouts.
+
+5. TECHNICAL SKILLS
+
+Support categories such as:
+- Programming Languages.
+- Frontend Development.
+- Backend Development.
+- Database.
+- Tools and Platforms.
+- Data Science and AI.
+- Other relevant skills.
+
+Skills must be dynamically loaded from MongoDB.
+
+6. PROJECT SHOWCASE
+
+Create modern project cards with:
+- Project name.
+- Cover image.
+- Description.
+- Technologies.
+- GitHub link.
+- Live demo link.
+- Project category.
+- Featured status.
+- Optional project details page.
+
+Include category filtering.
+
+7. EXPERIENCE AND ACHIEVEMENTS
+
+Show internships, relevant work experience, achievements and awards.
+
+8. RESEARCH AND PUBLICATIONS
+
+Display:
+- Paper title.
+- Authors.
+- Publication or journal.
+- Year.
+- Publication type.
+- DOI.
+- Abstract or description.
+- ResearchGate link.
+- Google Scholar link.
+- PDF link.
+
+9. TEAM SECTION
+
+If team data exists, display it with:
+- Name.
+- Photograph.
+- Designation.
+- Description.
+- Social links.
+
+10. CONTACT SECTION
+
+Create a functional contact form:
+- Name.
+- Email.
+- Subject.
+- Message.
+
+Save submitted messages in MongoDB.
+
+If email configuration is available, send a notification using Nodemailer.
+
+Display a proper success/error state.
+
+Redirect to /thank-you after successful submission.
+
+11. FOOTER
+
+Include editable:
+- Copyright.
+- Social links.
+- Navigation links.
+- Email.
+- Location text if configured.
+- Back-to-top control.
+
+All portfolio content must come from backend APIs, not hardcoded arrays inside React components.
+
+---
+
+# PHASE 5 — COMPLETE ADMIN AUTHENTICATION
+
+This is a single-administrator portfolio.
+
+VERY IMPORTANT:
+
+There must be NO registration or signup functionality.
+
+There must be NO public user creation API.
+
+There must be NO registration page.
+
+Admin credentials must be configured through the backend .env file.
+
+Example:
+
+ADMIN_USERNAME=your_admin_username
+ADMIN_PASSWORD_HASH=your_bcrypt_password_hash
+JWT_SECRET=your_long_random_secret
+JWT_EXPIRES_IN=1d
+
+MONGODB_URI=your_mongodb_connection_string
+
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+
+CLIENT_URL=http://localhost:5173
+PORT=5000
+
+Create:
+
+/login
+
+This page should have a premium professional login design.
+
+Login form:
+- Username.
+- Password.
+- Show/hide password.
+- Login button.
+- Loading state.
+- Error messages.
+
+Authentication requirements:
+
+- Compare username against the backend environment variable.
+- Verify password using bcrypt.
+- Generate JWT only after successful authentication.
+- Store the token in an HTTP-only cookie.
+- Configure Secure and SameSite cookie options correctly.
+- Implement logout.
+- Implement session expiration.
+- Protect all admin APIs.
+- Protect every admin route.
+- Never store admin passwords in MongoDB.
+- Never expose the password hash or JWT secret through an API.
+- Add login rate limiting.
+- Validate all input.
+- Do not return sensitive authentication errors.
+
+If credentials are incorrect, display a generic login error.
+
+Directly accessing /admin without authentication must redirect to /login.
+
+After successful login, redirect to /admin/dashboard.
+
+No public registration route should exist.
+
+---
+
+# PHASE 6 — COMPLETE ADMIN DASHBOARD
+
+Create a modern admin dashboard with a responsive sidebar.
+
+Admin route structure:
+
+/admin/dashboard
+/admin/profile
+/admin/about
+/admin/education
+/admin/skills
+/admin/projects
+/admin/experience
+/admin/publications
+/admin/certifications
+/admin/achievements
+/admin/team
+/admin/social-links
+/admin/contact-messages
+/admin/navigation
+/admin/appearance
+/admin/animations
+/admin/seo
+/admin/settings
+
+All routes must be protected.
+
+DASHBOARD OVERVIEW:
+
+Display:
+- Total projects.
+- Total skills.
+- Total education records.
+- Total experiences.
+- Total publications.
+- Total certifications.
+- Total contact messages.
+- Recent contact messages.
+- Quick management shortcuts.
+
+CONTENT MANAGEMENT REQUIREMENTS:
+
+Every content module must support:
+- Create.
+- Read.
+- Update.
+- Delete.
+- Search.
+- Filter.
+- Pagination when appropriate.
+- Form validation.
+- Loading states.
+- Success/error notifications.
+- Delete confirmation dialog.
+
+ADMIN MUST BE ABLE TO EDIT:
+
+A. Profile
+- Name.
+- Designation.
+- Tagline.
+- Profile image.
+- Hero introduction.
+- Resume URL.
+- Email.
+- Location.
+- Availability status.
+
+B. About
+- Biography.
+- Interests.
+- Statistics.
+- Profile images.
+- Section heading and subtitle.
+
+C. Education
+- Degree.
+- Institution.
+- Start date.
+- End date.
+- Description.
+- Grade or result.
+- Location.
+- Display order.
+
+D. Skills
+- Skill name.
+- Category.
+- Icon.
+- Proficiency level.
+- Display order.
+- Visibility.
+
+E. Projects
+- Title.
+- Slug.
+- Description.
+- Cover image.
+- Technologies.
+- Category.
+- GitHub URL.
+- Live URL.
+- Featured status.
+- Display order.
+- Visibility.
+
+F. Experience
+- Position.
+- Organization.
+- Employment type.
+- Start and end dates.
+- Description.
+- Skills.
+- Certificate URL.
+- Display order.
+
+G. Publications
+- Title.
+- Authors.
+- Publication.
+- Type.
+- Date.
+- Abstract.
+- DOI.
+- ResearchGate URL.
+- Scholar URL.
+- Paper PDF URL.
+
+H. Certifications and achievements
+- Title.
+- Issuer.
+- Date.
+- Description.
+- Certificate image or URL.
+- Verification link.
+
+I. Team
+- Name.
+- Designation.
+- Profile image.
+- Biography.
+- Social media links.
+
+J. Social Links
+- Platform.
+- URL.
+- Icon.
+- Visibility.
+- Order.
+
+K. Navigation and sections
+- Edit navigation labels.
+- Enable or disable sections.
+- Reorder sections.
+- Change section headings and subtitles.
+
+L. Global Appearance
+- Primary colour.
+- Secondary colour.
+- Accent colour.
+- Background.
+- Text colours.
+- Typography settings.
+- Border radius.
+- Card style.
+- Light/dark theme options.
+
+M. Animation Settings
+- Enable or disable multi-cursor animation.
+- Number of cursor actors.
+- Animation intensity.
+- Typing speed.
+- Reveal speed.
+- Section animation settings.
+- Reduced animation option.
+
+N. SEO Settings
+- Page title.
+- Meta description.
+- Keywords.
+- Open Graph image.
+- Favicon.
+- Social preview information.
+
+O. Contact Messages
+- View all messages.
+- Mark as read/unread.
+- Delete messages.
+- Search messages.
+- View submission date.
+
+P. General Settings
+- Portfolio name.
+- Logo.
+- Favicon.
+- Contact email.
+- Resume.
+- Footer content.
+- Copyright text.
+
+The admin should be able to manage all portfolio content and configurable visual settings without manually editing React files or MongoDB documents.
+
+Do not expose server code, environment variables, passwords or security configuration in the admin panel.
+
+---
+
+# PHASE 7 — DATABASE DESIGN
+
+Create separate Mongoose models for:
+
+- Profile
+- About
+- Education
+- Skill
+- Project
+- Experience
+- Publication
+- Certification
+- Achievement
+- TeamMember
+- SocialLink
+- SiteSettings
+- NavigationItem
+- ContactMessage
+
+Use appropriate schemas, validation, timestamps and indexes.
+
+Use a consistent API response format.
+
+Avoid creating duplicate records when updating singleton documents such as Profile and SiteSettings.
+
+All public portfolio APIs must return only published/visible content.
+
+Admin APIs should return the data required for management.
+
+---
+
+# PHASE 8 — BACKEND API ARCHITECTURE
+
+Create REST APIs using controllers, routes, middleware and services.
+
+Example:
+
+GET /api/public/profile
+GET /api/public/about
+GET /api/public/education
+GET /api/public/skills
+GET /api/public/projects
+GET /api/public/experience
+GET /api/public/publications
+GET /api/public/certifications
+GET /api/public/achievements
+GET /api/public/team
+GET /api/public/social-links
+GET /api/public/site-settings
+
+Authentication:
+
+POST /api/auth/login
+POST /api/auth/logout
+GET /api/auth/me
+
+Protected admin CRUD APIs:
+
+/api/admin/profile
+/api/admin/about
+/api/admin/education
+/api/admin/skills
+/api/admin/projects
+/api/admin/experience
+/api/admin/publications
+/api/admin/certifications
+/api/admin/achievements
+/api/admin/team
+/api/admin/social-links
+/api/admin/navigation
+/api/admin/settings
+/api/admin/messages
+
+Contact:
+
+POST /api/contact
+
+Implement appropriate GET, POST, PUT/PATCH and DELETE operations.
+
+Never allow unauthenticated users to access admin mutation endpoints.
+
+Use centralized error handling and validation.
+
+---
+
+# PHASE 9 — IMAGE AND FILE MANAGEMENT
+
+Use Cloudinary for uploaded media.
+
+Admin should be able to:
+- Upload profile image.
+- Change project images.
+- Upload certificate images.
+- Upload publication PDFs where supported.
+- Replace existing media.
+- Delete unused media safely.
+
+Validate file types and sizes.
+
+Do not allow arbitrary executable file uploads.
+
+Store only the necessary media URLs and metadata in MongoDB.
+
+---
+
+# PHASE 10 — FRONTEND ARCHITECTURE
+
+Use reusable components.
+
+Suggested structure:
+
+client/
+  src/
+    assets/
+    components/
+      common/
+      layout/
+      portfolio/
+      admin/
+      forms/
+      animations/
+    pages/
+      public/
+      admin/
+      auth/
+    layouts/
+    hooks/
+    context/
+    services/
+    routes/
+    utils/
+    styles/
+    App.jsx
+    main.jsx
+
+server/
+  config/
+  controllers/
+  models/
+  routes/
+  middleware/
+  services/
+  validators/
+  utils/
+  app.js
+  server.js
+
+Use:
+- Centralized Axios API client.
+- Centralized error handling.
+- Authentication context.
+- Protected routes.
+- Reusable form components.
+- Reusable CRUD table components.
+- Reusable confirmation dialogs.
+- Toast notifications.
+- Loading skeletons.
+
+Avoid duplicate code and excessively large components.
+
+---
+
+# PHASE 11 — RESPONSIVENESS AND ACCESSIBILITY
+
+The entire application must work on:
+- Desktop.
+- Laptop.
+- Tablet.
+- Mobile.
+
+Ensure:
+- Mobile navigation.
+- Responsive project grids.
+- Responsive dashboard sidebar.
+- Touch-friendly controls.
+- Accessible labels.
+- Keyboard navigation.
+- Sufficient colour contrast.
+- Reduced-motion support.
+
+No horizontal overflow.
+
+---
+
+# PHASE 12 — PERFORMANCE AND SEO
+
+Implement:
+- Lazy loading for images.
+- Optimized image delivery.
+- Code splitting.
+- Lazy-loaded routes.
+- Efficient MongoDB queries.
+- Proper loading states.
+- SEO metadata.
+- Open Graph tags.
+- Favicon.
+- Sitemap.
+- robots.txt.
+- Appropriate page titles.
+
+Do not let animations negatively affect Core Web Vitals.
+
+---
+
+# PHASE 13 — SECURITY
+
+Implement:
+
+- bcrypt password verification.
+- JWT authentication.
+- HTTP-only cookies.
+- Protected routes.
+- Rate limiting.
+- Helmet.
+- Strict CORS configuration.
+- Input validation.
+- MongoDB injection protection.
+- Secure file uploads.
+- Environment variable validation.
+- Centralized error handling.
+- No sensitive information in logs or responses.
+
+Never put private credentials in client-side environment variables.
+
+Never commit .env.
+
+Create .env.example with placeholder values only.
+
+---
+
+# PHASE 14 — TESTING
+
+Test the following scenarios.
+
+PUBLIC WEBSITE:
+- Website loads correctly.
+- Portfolio data comes from MongoDB.
+- All sections display correctly.
+- Navigation works.
+- Images load.
+- Resume link works.
+- Contact form submits.
+- Thank-you page works.
+- Responsive layout works.
+- Multi-cursor animations work.
+- Reduced-motion mode works.
+
+ADMIN:
+- /login works.
+- Correct credentials authenticate.
+- Incorrect credentials are rejected.
+- No registration page exists.
+- /admin redirects unauthenticated users.
+- Authenticated admin can access the dashboard.
+- CRUD operations work for every content module.
+- Image uploads work.
+- Theme settings update the public website.
+- Section visibility and ordering work.
+- Logout works.
+- Expired sessions are rejected.
+
+SECURITY:
+- Public users cannot access admin mutation APIs.
+- Secrets are never exposed.
+- Invalid input is rejected.
+- Rate limiting works.
+
+Fix all errors found during testing.
+
+---
+
+# PHASE 15 — DEPLOYMENT AND DOCUMENTATION
+
+Prepare the application for:
+
+Frontend: Vercel
+Backend: Render
+Database: MongoDB Atlas
+Media: Cloudinary
+
+Configure:
+- VITE_API_URL.
+- CLIENT_URL.
+- MONGODB_URI.
+- JWT_SECRET.
+- ADMIN_USERNAME.
+- ADMIN_PASSWORD_HASH.
+- Cloudinary credentials.
+- Email credentials.
+
+Add deployment instructions.
+
+Update README.md with:
+- Project overview.
+- Features.
+- Tech stack.
+- Installation.
+- Environment variables.
+- Local development.
+- Admin login setup.
+- Database setup.
+- Deployment.
+- Security notes.
+
+---
+
+# FINAL EXECUTION RULES
+
+1. First inspect the entire existing project.
+2. Prepare a migration checklist of existing content.
+3. Build the project in logical phases.
+4. Do not stop after creating the frontend.
+5. Implement the backend and MongoDB integration.
+6. Implement complete authentication.
+7. Implement the complete admin CMS.
+8. Connect every public section to the backend.
+9. Implement the multi-cursor animation system.
+10. Test all CRUD operations.
+11. Fix build and runtime errors.
+12. Preserve existing genuine portfolio information.
+13. Do not use fake placeholder content in the final production portfolio.
+14. Do not leave important buttons non-functional.
+15. Do not claim a feature is complete unless it has been implemented and tested.
+
+If the task is too large for one execution, divide it into manageable phases and maintain a checklist of completed and pending work.
+
+At the end of each phase, report:
+- Files created.
+- Files modified.
+- Features completed.
+- Tests performed.
+- Errors remaining.
+- Next implementation phase.
+
+FINAL GOAL:
+
+Deliver a premium, professional, fully responsive MERN portfolio for Amit Kumar with an impressive coordinated multi-cursor animation experience and a secure, complete admin dashboard where the administrator can manage all portfolio content and configurable design settings without editing source code.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# TASK: Transform Portfolio into a Live Cursor-Written Interactive Experience
+
+Modify my existing portfolio project. Do not create an unrelated portfolio or replace my existing personal data.
+
+## 1. Understand the Actual Requirement
+
+I want visitors to feel that the portfolio is being written and constructed in real time by multiple animated developer-style cursors.
+
+This is NOT a normal typing animation, not a simple fade-in animation, and not decorative floating cursors.
+
+The cursors must visually interact with the portfolio content:
+- Type headings and paragraphs character by character.
+- Move between different content elements.
+- Draw borders and outlines around cards.
+- Construct visual containers and timeline components.
+- Reveal technology icons, project cards, and other content.
+- Coordinate their activity with the visitor's scrolling position.
+
+The experience should resemble multiple developers collaboratively building the portfolio in real time.
+
+## 2. Multi-Cursor Animation Engine
+
+Implement a reusable animation system.
+
+Requirements:
+- Create a pool of 7–8 visually distinct cursor actors.
+- Use 2–4 active cursors simultaneously, depending on the section.
+- Give each cursor a unique color, subtle glow, and small developer-style label.
+- Animate cursor movement using smooth paths.
+- Add realistic typing effects with variable typing speed and small pauses.
+- Make cursors appear to write actual existing portfolio text.
+- Use SVG path drawing or equivalent animation for card borders and section outlines.
+- Make the animation progress depend on scroll position.
+- Use IntersectionObserver to activate relevant section animations.
+- Prevent repeated animation restarts when scrolling slightly up and down.
+- Ensure cursors never overlap text in an unreadable way.
+- Ensure cursors disappear or move away after completing their task.
+
+## 3. Section-by-Section Animation
+
+### Hero
+- Multiple cursors enter the hero area.
+- One writes the introduction and name.
+- Another draws the profile image frame.
+- Another constructs the CTA buttons.
+- Finish with a subtle glowing cursor blink.
+
+### About
+- A cursor writes the section heading.
+- Another types the About description.
+- Other cursors draw the profile information/stat cards.
+- Reveal the cards only as their outlines are completed.
+
+### My Journey
+- Draw the vertical timeline line.
+- Use a cursor to construct each timeline node.
+- Reveal timeline cards progressively.
+- Keep the alternating timeline layout.
+
+### Technical Skills
+- Draw the skill ecosystem cards.
+- Reveal technology icons and names progressively.
+- Use cursors to move between skill groups.
+
+### Projects
+- Cursors construct project cards.
+- Draw the card outline before revealing its contents.
+- Reveal project images, titles, descriptions, and technology tags.
+
+### Experience & Achievements
+- Construct achievement cards using animated outlines.
+- Type their headings and descriptions progressively.
+
+### Publications
+- Draw publication containers.
+- Reveal publication title and abstract text through typing animations.
+
+### Team and Contact
+- Reveal team cards and contact information through coordinated cursor animations.
+- Animate the footer structure subtly.
+
+## 4. Replace Technical Skills Completely
+
+Remove:
+- Percentage values.
+- Horizontal progress bars.
+- Fake proficiency scores.
+- Existing repetitive skill card design.
+
+Create a new section titled "Technical Arsenal" or "Technology Stack".
+
+Organize genuine existing skills into these groups:
+
+1. Programming: Python, Java, C, C++, SQL.
+2. Frontend Development: HTML, CSS, JavaScript, React, Tailwind CSS.
+3. Backend Development: Node.js, Express.js, REST APIs.
+4. Databases: MongoDB, MySQL, Firebase.
+5. AI & Data Analytics: Power BI, YOLO, OpenCV, LLM APIs.
+6. Developer Tools: Git, GitHub, VS Code, Linux, Figma, Canva.
+
+Important:
+- First inspect the original portfolio data and actual project usage.
+- Retain only technologies supported by my existing portfolio or that I can demonstrate.
+- Do not invent skills or experience.
+- Update the skill list to reflect the verified technologies.
+- Add suitable technology icons where available.
+- Create visually distinct category cards.
+- Use small technology chips with attractive hover interactions.
+- Optionally show which projects use each technology.
+- Use a clean, modern bento-grid layout.
+- Do not display percentage-based proficiency.
+
+## 5. Visual Design
+
+Preserve the existing dark developer portfolio identity.
+
+Improve:
+- Typography and readability.
+- Card spacing and alignment.
+- Section hierarchy.
+- Responsive behaviour.
+- Consistency of borders, shadows, and accent colors.
+
+Use restrained violet, blue, and cyan accents. Avoid excessive neon effects.
+
+The animation should feel premium and intentional, not like a game interface.
+
+## 6. Performance and Accessibility
+
+- Use Framer Motion if already installed; otherwise choose a lightweight compatible approach.
+- Use IntersectionObserver for scroll-triggered activity.
+- Avoid unnecessary React re-renders.
+- Avoid layout shifts during typing.
+- Keep the complete portfolio text available in the DOM for SEO and accessibility.
+- Respect prefers-reduced-motion.
+- On mobile, simplify the number of cursors and animation complexity.
+- Pause nonessential animation when the browser tab is hidden.
+- Provide a fallback that displays all content normally if animations fail.
+
+## 7. Important Implementation Rules
+
+- Inspect the complete existing source code before editing.
+- Preserve my name, profile photo, education, projects, publications, experience, social links, contact details, and resume.
+- Do not delete or rewrite genuine portfolio information.
+- Do not create duplicate sections.
+- Make the animation reusable and configurable.
+- Keep all existing functionality working.
+- Test desktop, tablet, and mobile layouts.
+- Fix all console errors and broken interactions.
+
+## 8. Final Deliverable
+
+Implement the changes in the existing project, not just a visual mockup.
+
+After implementation:
+1. List the files changed.
+2. Explain how the cursor animation engine works.
+3. Explain the new Technical Arsenal section.
+4. Report tests performed and any remaining limitations.
+5. Ensure the application runs using the existing development commands.

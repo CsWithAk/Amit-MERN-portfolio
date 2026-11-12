@@ -1,0 +1,554 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Default design tokens (dark premium). These are overridden at runtime by
+   SettingsContext from the SiteSettings.appearance document, so admin theme
+   changes update the public site live. */
+:root {
+  --bg: #080b14;
+  --bg-2: #101626;
+  --card: #141d30;
+  --primary: #8b5cf6;
+  --secondary: #38bdf8;
+  --highlight: #a78bfa;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --border: rgba(148, 163, 184, 0.15);
+  --radius: 16px;
+  --font-sans: 'Poppins', system-ui, sans-serif;
+  --font-display: 'Space Grotesk', 'Poppins', system-ui, sans-serif;
+
+  /* RGB triplets (space-separated) consumed by Tailwind as rgb(var(--x-rgb)/α).
+     These mirror the hex values above and are kept in sync at runtime by
+     SettingsContext whenever the admin changes the appearance. */
+  --bg-rgb: 8 11 20;
+  --bg-2-rgb: 16 22 38;
+  --card-rgb: 20 29 48;
+  --primary-rgb: 139 92 246;
+  --secondary-rgb: 56 189 248;
+  --highlight-rgb: 167 139 250;
+  --text-rgb: 248 250 252;
+  --muted-rgb: 148 163 184;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* A calm, single-color canvas keeps the portfolio professional and readable. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: var(--bg);
+  pointer-events: none;
+}
+
+/* Optional restrained grid treatment for sections that opt in with .section-grid. */
+.section-grid {
+  background-image: linear-gradient(rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Markdown authored through the admin CMS. */
+.markdown-content > :first-child { margin-top: 0; }
+.markdown-content > :last-child { margin-bottom: 0; }
+.markdown-content p { margin: 0.65rem 0; }
+.markdown-content ul,
+.markdown-content ol { margin: 0.7rem 0; padding-left: 1.35rem; }
+.markdown-content ul { list-style: disc; }
+.markdown-content ol { list-style: decimal; }
+.markdown-content li { margin: 0.25rem 0; padding-left: 0.15rem; }
+.markdown-content strong { color: var(--text); font-weight: 700; }
+.markdown-content em { color: var(--highlight); }
+.markdown-content a { color: var(--primary); text-decoration: underline; text-underline-offset: 3px; }
+.markdown-content blockquote { margin: 0.8rem 0; border-left: 3px solid var(--primary); padding-left: 0.9rem; color: var(--muted); }
+.markdown-content code { border-radius: 0.35rem; background: color-mix(in srgb, var(--bg-2) 80%, transparent); padding: 0.1rem 0.35rem; font-size: 0.9em; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--primary) 40%, transparent);
+  color: #fff;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-2);
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--primary) 45%, var(--card));
+  border-radius: 999px;
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+  }
+
+  .glass {
+    background: color-mix(in srgb, var(--card) 72%, transparent);
+    backdrop-filter: blur(14px);
+    border: 1px solid var(--border);
+  }
+
+  .card {
+    @apply rounded-card border border-line bg-card/60;
+    box-shadow: 0 18px 40px -28px rgba(2, 6, 23, 0.7);
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .btn-primary {
+    @apply text-white;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    box-shadow: 0 12px 30px -12px color-mix(in srgb, var(--primary) 70%, transparent);
+  }
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.08);
+  }
+  .btn-ghost {
+    @apply border border-line text-text;
+    background: color-mix(in srgb, var(--card) 60%, transparent);
+  }
+  .btn-ghost:hover {
+    border-color: color-mix(in srgb, var(--primary) 60%, var(--border));
+  }
+
+  .field {
+    @apply w-full rounded-xl border border-line bg-bg-2/70 px-4 py-2.5 text-sm text-text placeholder:text-muted/60 outline-none transition focus:border-primary/60 focus:ring-2 focus:ring-primary/25;
+  }
+  .label {
+    @apply mb-1.5 block text-xs font-semibold uppercase tracking-wide text-muted;
+  }
+
+  .chip {
+    @apply inline-flex items-center rounded-full border border-line bg-bg-2/60 px-3 py-1 text-xs text-muted;
+  }
+
+  .section-title {
+    @apply text-2xl font-bold sm:text-3xl;
+  }
+  .eyebrow {
+    @apply mb-3 inline-flex items-center gap-2 rounded-full border border-line bg-bg-2/50 px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] text-highlight;
+  }
+
+  .link-underline {
+    @apply relative;
+  }
+  .link-underline::after {
+    content: '';
+    @apply absolute left-0 -bottom-1 h-px w-0 bg-primary transition-all duration-300;
+  }
+  .link-underline:hover::after {
+    @apply w-full;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(120deg, var(--primary), var(--secondary) 60%, var(--highlight));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* ============================================================
+   Technical Arsenal — neon category cards
+   Accent colour is injected per-card via the --accent variable.
+   ============================================================ */
+.arsenal-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary) 55%, transparent);
+  box-shadow: 0 0 22px -8px color-mix(in srgb, var(--primary) 80%, transparent);
+}
+
+.arsenal-rule {
+  height: 1px;
+  width: 2.5rem;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--primary) 60%, transparent));
+}
+.arsenal-rule--right {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--primary) 60%, transparent), transparent);
+}
+
+.arsenal-card {
+  position: relative;
+  border-radius: 24px;
+  padding: 1.5px; /* neon ring thickness */
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--accent) 85%, transparent),
+    color-mix(in srgb, var(--accent) 22%, transparent) 55%,
+    color-mix(in srgb, var(--accent) 50%, transparent)
+  );
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 16%, transparent),
+    0 18px 50px -30px color-mix(in srgb, var(--accent) 85%, transparent);
+  transition: box-shadow 0.45s ease;
+}
+.arsenal-card::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  border-radius: 28px;
+  background: radial-gradient(120% 120% at 0% 0%,
+    color-mix(in srgb, var(--accent) 32%, transparent), transparent 62%);
+  filter: blur(18px);
+  opacity: 0.45;
+  transition: opacity 0.45s ease;
+}
+.arsenal-card:hover {
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 30%, transparent),
+    0 28px 60px -28px color-mix(in srgb, var(--accent) 92%, transparent);
+}
+.arsenal-card:hover::before {
+  opacity: 0.9;
+}
+
+.arsenal-surface {
+  position: relative;
+  height: 100%;
+  border-radius: 22.5px;
+  padding: 1.5rem;
+  overflow: hidden;
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--accent) 14%, rgba(10, 14, 24, 0.92)),
+    rgba(9, 12, 20, 0.72) 55%
+  );
+  backdrop-filter: blur(10px);
+}
+
+.arsenal-num {
+  position: absolute;
+  top: 1.05rem;
+  right: 1.4rem;
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: color-mix(in srgb, var(--accent) 88%, white);
+  opacity: 0.92;
+}
+
+.arsenal-icon {
+  display: grid;
+  place-items: center;
+  height: 72px;
+  width: 72px;
+  flex: none;
+  border-radius: 18px;
+  color: #fff;
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--accent) 92%, white),
+    color-mix(in srgb, var(--accent) 55%, black)
+  );
+  box-shadow: 0 10px 26px -10px color-mix(in srgb, var(--accent) 85%, transparent),
+    inset 0 0 0 1px color-mix(in srgb, var(--accent) 45%, transparent);
+  transition: transform 0.4s ease;
+}
+.arsenal-card:hover .arsenal-icon {
+  transform: scale(1.06);
+}
+
+.arsenal-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: color-mix(in srgb, var(--text) 88%, transparent);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+  transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+}
+.arsenal-card:hover .arsenal-chip {
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  background: color-mix(in srgb, var(--accent) 10%, rgba(255, 255, 255, 0.03));
+}
+.arsenal-chip:hover {
+  transform: translateY(-1px);
+}
+.arsenal-chip-dot {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 75%, white);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--accent) 60%, transparent);
+}
+
+.arsenal-arrow {
+  position: absolute;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  display: grid;
+  place-items: center;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 999px;
+  color: var(--accent);
+  cursor: pointer;
+  background: color-mix(in srgb, rgba(9, 12, 20, 0.6), transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent);
+  box-shadow: 0 0 18px -6px color-mix(in srgb, var(--accent) 80%, transparent);
+  transition: transform 0.35s ease, background 0.35s ease;
+}
+.arsenal-card:hover .arsenal-arrow {
+  transform: translateX(3px);
+  background: color-mix(in srgb, var(--accent) 18%, rgba(9, 12, 20, 0.6));
+}
+
+.arsenal-cta {
+  display: inline-flex;
+  border-radius: 999px;
+  padding: 1.5px;
+  text-decoration: none;
+  background: linear-gradient(120deg, var(--primary), var(--secondary));
+  box-shadow: 0 14px 40px -18px color-mix(in srgb, var(--primary) 80%, transparent);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.arsenal-cta > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  border-radius: 999px;
+  padding: 0.7rem 1.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text);
+  background: color-mix(in srgb, var(--bg) 82%, black);
+}
+.arsenal-cta > span svg {
+  transition: transform 0.3s ease;
+}
+.arsenal-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 46px -16px color-mix(in srgb, var(--primary) 90%, transparent);
+}
+.arsenal-cta:hover > span svg {
+  transform: translateX(3px);
+}
+
+/* ============================================================
+   Site-wide NEON design system (extends the Technical Arsenal
+   language to every card / glass panel / container).
+   Colour is driven by --accent; glow + border intensity by vars.
+   ============================================================ */
+:root {
+  /* Consistent neon palette */
+  --neon-purple: #A855F7;
+  --neon-blue: #3B82F6;
+  --neon-cyan: #06B6D4;
+  --neon-pink: #D946EF;
+  --neon-green: #10B981;
+  --neon-orange: #F59E0B;
+
+  /* Neon geometry */
+  --neon-glow: 40px;   /* outer glow spread */
+  --neon-ring: 1px;    /* neon border thickness */
+
+  /* Default accent (overridden per section below / per card inline) */
+  --accent: var(--primary);
+}
+
+/* One accent per section keeps each area visually coherent. */
+#home { --accent: var(--neon-purple); }
+#about { --accent: var(--neon-blue); }
+#journey { --accent: var(--neon-purple); }
+#projects { --accent: var(--neon-cyan); }
+#experience { --accent: var(--neon-purple); }
+#publications { --accent: var(--neon-blue); }
+#team { --accent: var(--neon-purple); }
+#contact { --accent: var(--neon-cyan); }
+
+/* Per-element accent helpers (e.g. achievements inside #experience). */
+.accent-purple { --accent: var(--neon-purple); }
+.accent-blue { --accent: var(--neon-blue); }
+.accent-cyan { --accent: var(--neon-cyan); }
+.accent-pink { --accent: var(--neon-pink); }
+.accent-green { --accent: var(--neon-green); }
+.accent-orange { --accent: var(--neon-orange); }
+
+/* Every card / glass panel gets the neon treatment. */
+.card,
+.glass {
+  border-color: color-mix(in srgb, var(--accent) 42%, var(--border));
+  background-image: radial-gradient(
+    120% 120% at 0% 0%,
+    color-mix(in srgb, var(--accent) 10%, transparent),
+    transparent 55%
+  );
+  box-shadow:
+    0 0 0 var(--neon-ring) color-mix(in srgb, var(--accent) 12%, transparent),
+    0 18px 40px -28px rgba(2, 6, 23, 0.7),
+    0 0 var(--neon-glow) -20px color-mix(in srgb, var(--accent) 65%, transparent);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.card:hover,
+.glass:hover {
+  border-color: color-mix(in srgb, var(--accent) 72%, var(--border));
+  box-shadow:
+    0 0 0 var(--neon-ring) color-mix(in srgb, var(--accent) 24%, transparent),
+    0 22px 46px -26px rgba(2, 6, 23, 0.7),
+    0 0 calc(var(--neon-glow) + 16px) -16px color-mix(in srgb, var(--accent) 82%, transparent);
+}
+
+/* Opt-in upward movement for interactive cards only. */
+@media (prefers-reduced-motion: no-preference) {
+  .lift:hover {
+    transform: translateY(-5px);
+  }
+}
+html.reduce-motion .lift:hover {
+  transform: none;
+}
+
+/* Image-frame lighting: inset neon ring + soft inner bloom. */
+.img-neon {
+  position: relative;
+}
+.img-neon::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--accent) 45%, transparent),
+    inset 0 -46px 70px -34px color-mix(in srgb, var(--accent) 32%, transparent);
+}
+
+/* Journey timeline: glowing rail + node. */
+.rail-neon {
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--neon-purple) 70%, transparent),
+    color-mix(in srgb, var(--neon-blue) 45%, transparent) 55%,
+    transparent
+  ) !important;
+  box-shadow: 0 0 14px -2px color-mix(in srgb, var(--neon-purple) 55%, transparent);
+}
+.node-neon {
+  box-shadow:
+    0 0 0 4px color-mix(in srgb, var(--accent) 20%, transparent),
+    0 0 18px -3px color-mix(in srgb, var(--accent) 70%, transparent) !important;
+}
+
+/* Footer: subtle ambient gradient glow + neon hairline (never overpowering). */
+.footer-glow {
+  background-image: radial-gradient(
+    60% 130% at 50% 0%,
+    color-mix(in srgb, var(--primary) 12%, transparent),
+    transparent 70%
+  );
+  border-top-color: color-mix(in srgb, var(--primary) 40%, var(--border));
+}
+
+/* Flat visual system: remove the previous neon rings, blooms and ambient glows. */
+.card,
+.glass,
+.arsenal-card,
+.arsenal-surface {
+  background-image: none !important;
+  box-shadow: 0 18px 40px -28px rgba(2, 6, 23, 0.75) !important;
+  border-color: var(--border) !important;
+}
+.card:hover,
+.glass:hover,
+.arsenal-card:hover {
+  box-shadow: 0 22px 46px -30px rgba(2, 6, 23, 0.85) !important;
+  border-color: color-mix(in srgb, var(--text) 22%, var(--border)) !important;
+}
+.img-neon::after,
+.rail-neon,
+.node-neon,
+.footer-glow {
+  box-shadow: none !important;
+  background-image: none !important;
+}
+.arsenal-card,
+.arsenal-cta {
+  background: var(--border) !important;
+}
+.arsenal-pill,
+.arsenal-arrow,
+.arsenal-chip-dot,
+.arsenal-cta {
+  box-shadow: none !important;
+}
+.arsenal-icon,
+.btn-primary {
+  background: var(--primary) !important;
+  box-shadow: 0 10px 24px -18px rgba(2, 6, 23, 0.9) !important;
+}
+.text-gradient {
+  background: none !important;
+  color: var(--primary) !important;
+}
+
+/* Reduced motion: honour both OS setting and admin toggle */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+html.reduce-motion *,
+html.reduce-motion *::before,
+html.reduce-motion *::after {
+  animation-duration: 0.001ms !important;
+  transition-duration: 0.001ms !important;
+}
